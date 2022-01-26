@@ -17,6 +17,15 @@ lvim.colorscheme = "onedarker"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+
+-- Carry current line to the new line in normal mode
+lvim.keys.normal_mode["<CR>"] = "i<CR><Esc>"
+
+-- Cursor movement in insert mode
+lvim.keys.insert_mode["<C-j>"] = "<Down>"
+lvim.keys.insert_mode["<C-k>"] = "<Up>"
+lvim.keys.insert_mode["<C-h>"] = "<Left>"
+lvim.keys.insert_mode["<C-l>"] = "<Right>"
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
 -- edit a default keymapping
@@ -39,12 +48,6 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 --     ["<C-k>"] = actions.move_selection_previous,
 --   },
 -- }
-
--- Cursor movement in insert mode
-lvim.keys.insert_mode["<C-j>"] = "<Down>"
-lvim.keys.insert_mode["<C-k>"] = "<Up>"
-lvim.keys.insert_mode["<C-h>"] = "<Left>"
-lvim.keys.insert_mode["<C-l>"] = "<Right>"
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }

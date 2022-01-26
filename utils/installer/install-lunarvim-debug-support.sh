@@ -77,7 +77,6 @@ function copy_example_to_ftplugin(){
   cp "$LUNARVIM_DIR/lvim/utils/installer/ftplugin-example/java.example.lua" "$FTPLUGIN/java.lua"
   cp "$LUNARVIM_DIR/lvim/utils/installer/ftplugin-example/go.example.lua" "$FTPLUGIN/go.lua"
   cp "$LUNARVIM_DIR/lvim/utils/installer/ftplugin-example/python.example.lua" "$FTPLUGIN/python.lua"
-  
 }
 
 function install_python_debug_env(){

@@ -295,4 +295,8 @@ return {
     end,
     disable = not lvim.builtin.symbols_outline.active,
   },
+  -- Lsp java client
+  {
+    "mfussenegger/nvim-jdtls"
+  },
 }

@@ -284,6 +284,7 @@ return {
     end,
     disable = not lvim.builtin.terminal.active,
   },
+
   -- Ranger
   {
    "kevinhwang91/rnvimr"
@@ -295,6 +296,7 @@ return {
     end,
     disable = not lvim.builtin.symbols_outline.active,
   },
+
   -- Lsp java client
   {
     "mfussenegger/nvim-jdtls"

@@ -22,8 +22,6 @@ BASEDIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 BASEDIR="$(dirname -- "$(dirname -- "$BASEDIR")")"
 readonly BASEDIR
 
-declare -r FTPLUGIN="${FTPLUGIN:-"$LUNARVIM_RUNTIME_DIR/site/after/ftplugin"}"
-
 declare ARGS_LOCAL=0
 declare ARGS_OVERWRITE=0
 declare ARGS_INSTALL_DEPENDENCIES=1
@@ -379,9 +377,6 @@ function setup_lvim() {
   setup_shim
 
   cp "$LUNARVIM_BASE_DIR/utils/installer/config.example.lua" "$LUNARVIM_CONFIG_DIR/config.lua"
-  cp "$LUNARVIM_BASE_DIR/utils/installer/ftplugin-example/java.example.lua" "$FTPLUGIN/java.lua"
-  cp "$LUNARVIM_BASE_DIR/utils/installer/ftplugin-example/go.example.lua" "$FTPLUGIN/go.lua"
-  cp "$LUNARVIM_BASE_DIR/utils/installer/ftplugin-example/python.example.lua" "$FTPLUGIN/python.lua"
 
   echo "Preparing Packer setup"
 

@@ -13,6 +13,10 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "onedarker"
 
+-- Degug environments directory
+local home_dir = vim.loop.os_homedir()
+lvim.debug_env_dir =home_dir.."/.config/lunarvim-debug-support"
+
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping

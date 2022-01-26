@@ -1,7 +1,7 @@
 local dap = require('dap')
 dap.adapters.python = {
   type = 'executable';
-  command = os.getenv("HOME")..'/.config/lunarvim-debug-support/virtualenvs/debugpy/bin/python';
+  command = lvim.debug_env_dir..'/virtualenvs/debugpy/bin/python';
   args = { '-m', 'debugpy.adapter' };
 }
 

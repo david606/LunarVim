@@ -2,7 +2,7 @@ local dap = require "dap"
 dap.adapters.go = {
   type = 'executable';
   command = 'node';
-  args = {os.getenv('HOME') .. '/.config/lunarvim-debug-support/vscode-go/dist/debugAdapter.js'};
+  args = {lvim.debug_env_dir ..'/vscode-go/dist/debugAdapter.js'};
 }
 dap.configurations.go = {
   {

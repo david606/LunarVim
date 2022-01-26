@@ -242,6 +242,18 @@ return {
     end,
     disable = not lvim.builtin.dap.active,
   },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    disable = not lvim.builtin.dap.active,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    disable = not lvim.builtin.dap.active,
+  },
+  {
+    "nvim-telescope/telescope-dap.nvim",
+    disable = not lvim.builtin.dap.active,
+  },
 
   -- Debugger management
   {

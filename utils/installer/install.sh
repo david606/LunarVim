@@ -2,8 +2,8 @@
 set -eo pipefail
 
 #Set branch to master unless specified by the user
-declare LV_BRANCH="${LV_BRANCH:-"master"}"
-declare -r LV_REMOTE="${LV_REMOTE:-lunarvim/lunarvim.git}"
+declare LV_BRANCH="${LV_BRANCH:-"support-popular-language"}"
+declare -r LV_REMOTE="${LV_REMOTE:-david606/LunarVim.git}"
 declare -r INSTALL_PREFIX="${INSTALL_PREFIX:-"$HOME/.local"}"
 
 declare -r XDG_DATA_HOME="${XDG_DATA_HOME:-"$HOME/.local/share"}"

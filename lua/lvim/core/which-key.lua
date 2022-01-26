@@ -241,6 +241,10 @@ M.config = function()
         name = "Treesitter",
         i = { ":TSConfigInfo<cr>", "Info" },
       },
+      R = {
+          name = "Ranger",
+          t = { ":RnvimrToggle<cr>", "toggle" },
+      },
     },
   }
 end

@@ -284,4 +284,8 @@ return {
     end,
     disable = not lvim.builtin.terminal.active,
   },
+  -- Ranger
+  {
+   "kevinhwang91/rnvimr"
+  },
 }

@@ -288,4 +288,11 @@ return {
   {
    "kevinhwang91/rnvimr"
   },
+  {
+    "simrat39/symbols-outline.nvim",
+    config = function()
+      require("lvim.core.symbols-outline").setup()
+    end,
+    disable = not lvim.builtin.symbols_outline.active,
+  },
 }

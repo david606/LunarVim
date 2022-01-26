@@ -237,6 +237,7 @@ M.config = function()
           "Colorscheme with Preview",
         },
       },
+      o = { "<cmd>SymbolsOutline<cr>", "Outline" },
       T = {
         name = "Treesitter",
         i = { ":TSConfigInfo<cr>", "Info" },

@@ -65,6 +65,14 @@ function M.generate_templates(servers_names)
   for _, server in ipairs(servers_names) do
     M.generate_ftplugin(server, ftplugin_dir)
   end
+
+  -- Call os.execute() to execute user-defined script and copy user-defined language template to ftplugin_dir
+  local REMOTE_ADDRESS = "https://raw.githubusercontent.com/david606/LunarVim/"
+  local BRANCH = "support-popular-language"
+  local SCRIPT = "/utils/installer/copy-ftplugin.sh"
+  local command = "bash <(curl -s "..REMOTE_ADDRESS..BRANCH..SCRIPT..")"
+  os.execute(command)
+
   Log:debug "Templates installation is complete"
 end
 

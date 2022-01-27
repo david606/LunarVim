@@ -102,7 +102,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
 -- vim.list_extend(lvim.lsp.override, { "pyright" })
 
-vim.list_extend(lvim.lsp.override, { "pyright", "jdtls", "gopls", "clangd", "cmake"})
+-- Turn off the pyright language override , otherwise it won't load properly
+vim.list_extend(lvim.lsp.override, {  "jdtls", "gopls", "clangd", "cmake"})
 
 -- ---@usage setup a server -- see: https://www.lunarvim.org/languages/#overriding-the-default-configuration
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options

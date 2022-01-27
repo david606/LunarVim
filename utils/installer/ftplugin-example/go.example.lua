@@ -1,8 +1,9 @@
 local dap = require "dap"
+
 dap.adapters.go = {
   type = 'executable';
   command = 'node';
-  args = {lvim.debug_env_dir ..'/vscode-go/dist/debugAdapter.js'};
+  args = {lvim.debug_environments_home ..'/vscode-go/dist/debugAdapter.js'};
 }
 dap.configurations.go = {
   {
@@ -14,4 +15,5 @@ dap.configurations.go = {
     dlvToolPath = vim.fn.exepath('dlv')  -- Adjust to where delve is installed
   },
 }
+
 require("lvim.lsp.manager").setup("gopls")

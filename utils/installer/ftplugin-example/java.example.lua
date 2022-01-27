@@ -24,10 +24,10 @@ JAVA_LS_EXECUTABLE = home .. "/.local/share/lunarvim/lvim/utils/bin/jdtls"
 
 -- This bundles definition is the same as in the previous section (java-debug installation)
 local bundles = {
-  vim.fn.glob(lvim.debug_env_dir .."/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"),
+  vim.fn.glob(lvim.debug_environments_home .."/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"),
 };
 -- This is the new part
-vim.list_extend(bundles, vim.split(vim.fn.glob(lvim.debug_env_dir .."/vscode-java-test/server/*.jar"), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(lvim.debug_environments_home .."/vscode-java-test/server/*.jar"), "\n"))
 
 lvim.lsp.code_lens_refresh = false
 
@@ -185,5 +185,3 @@ which_key.register(vmappings, vopts)
 
 vim.cmd [[setlocal shiftwidth=4]]
 vim.cmd [[setlocal tabstop=4]]
-
--- require("lvim.lsp.manager").setup("jdtls")

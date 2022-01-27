@@ -72,12 +72,12 @@ function install_debug_env(){
 }
 
 # copy popular language templates to ftplugin
-function copy_example_to_ftplugin(){
-  msg "Copying language template to ftplugin ..."
-  cp "$LUNARVIM_DIR/lvim/utils/installer/ftplugin-example/java.example.lua" "$FTPLUGIN/java.lua"
-  cp "$LUNARVIM_DIR/lvim/utils/installer/ftplugin-example/go.example.lua" "$FTPLUGIN/go.lua"
-  cp "$LUNARVIM_DIR/lvim/utils/installer/ftplugin-example/python.example.lua" "$FTPLUGIN/python.lua"
-}
+# function copy_example_to_ftplugin(){
+#   msg "Copying language template to ftplugin ..."
+#   cp "$LUNARVIM_DIR/lvim/utils/installer/ftplugin-example/java.example.lua" "$FTPLUGIN/java.lua"
+#   cp "$LUNARVIM_DIR/lvim/utils/installer/ftplugin-example/go.example.lua" "$FTPLUGIN/go.lua"
+#   cp "$LUNARVIM_DIR/lvim/utils/installer/ftplugin-example/python.example.lua" "$FTPLUGIN/python.lua"
+# }
 
 function install_python_debug_env(){
   msg "Now installing debugpy ..."
@@ -108,8 +108,8 @@ function main(){
   # install python debug
   install_python_debug_env
 
-  # copy popular language templates to ftplugin
-  copy_example_to_ftplugin
+  msg "Copying language template to ftplugin ..."
+  python $LUNARVIM_DIR/lvim/utils/installer/copy-ftplugin.py
 }
 
 main

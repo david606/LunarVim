@@ -13,9 +13,20 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "onedarker"
 
--- Degug environments directory
-local home_dir = vim.loop.os_homedir()
-lvim.debug_env_dir =home_dir.."/.config/lunarvim-debug-support"
+local home = vim.loop.os_homedir()
+
+-- Test environment directory, where the test environment for each language is located
+lvim.debug_environments_home =home.."/.config/lunarvim-debug-support"
+
+-- Lunarvim's home directory, including subdirectories such as lvim and site
+lvim.lunarvim_home = home .. "/.local/share/lunarvim"
+
+-- Lunarvim's core directory, some of the key core programs are in this directory
+lvim.lvim_home = lvim.lunarvim_home .. "/lvim"
+
+-- Lunarvim's extension directory, some referenced plugins, and ftpluin are in this directory
+lvim.site_home = lvim.lunarvim_home .. "/site"
+
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -102,8 +113,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
 -- vim.list_extend(lvim.lsp.override, { "pyright" })
 
--- Turn off the pyright language override , otherwise it won't load properly
-vim.list_extend(lvim.lsp.override, {  "jdtls", "gopls", "clangd", "cmake"})
+-- Turn off the override for pyright, otherwise it won't load properly
+-- vim.list_extend(lvim.lsp.override, {  "jdtls", "gopls", "clangd", "cmake"})
 
 -- ---@usage setup a server -- see: https://www.lunarvim.org/languages/#overriding-the-default-configuration
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options

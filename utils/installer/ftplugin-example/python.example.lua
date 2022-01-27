@@ -1,7 +1,8 @@
 local dap = require('dap')
+
 dap.adapters.python = {
   type = 'executable';
-  command = lvim.debug_env_dir..'/virtualenvs/debugpy/bin/python';
+  command = lvim.debug_environments_home..'/virtualenvs/debugpy/bin/python';
   args = { '-m', 'debugpy.adapter' };
 }
 
@@ -31,4 +32,5 @@ dap.configurations.python = {
     end;
   },
 }
+
 require("lvim.lsp.manager").setup("pyright")

@@ -242,9 +242,23 @@ M.config = function()
         name = "Treesitter",
         i = { ":TSConfigInfo<cr>", "Info" },
       },
-      R = {
-          name = "Ranger",
-          t = { ":RnvimrToggle<cr>", "toggle" },
+      r = { ":RnvimrToggle<cr>", "Ranger" },
+      k = {
+        name = "CMake",
+        -- Create a new project or open an existing
+        n = { ":CMake create_project<cr>", "New project" },
+        -- Configure project to create build folder and get targets information
+        c = { ":CMake configure<cr>", "Configure project" },
+        -- Select target to execute
+        s = { ":CMake select_target<cr>", "Select target" },
+        -- Compile selected target (via --build). Additional arguments will be passed to CMake
+        b = { ":CMake build<cr>", "Build" },
+        -- Execute clear target. Additional arguments will be passed to CMake.
+        r = { ":CMake clean<cr>", "Remove target" },
+        -- Delete CMakeCache.txt file from the build directory.
+        d = { ":CMake clean<cr>", "Delete CMakeCache.txt" },
+        -- Cancel current running CMake action like build or run.
+        q = { ":CMake cancel<cr>", "Cancel build" },
       },
     },
   }

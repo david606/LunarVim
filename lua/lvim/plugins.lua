@@ -301,4 +301,7 @@ return {
   {
     "mfussenegger/nvim-jdtls"
   },
+  {
+      "Shatur/neovim-cmake"
+  },
 }

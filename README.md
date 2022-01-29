@@ -1,3 +1,4 @@
+### LunarVim
 
 #### Install
 
@@ -23,7 +24,7 @@ ln -sf $HOME/.local/bin/lvim $HOME/.local/bin/vi
 **update git url**
 
 ```sh
-cd /home/david/.local/share/lunarvim/lvim
+cd $HOME/.local/share/lunarvim/lvim
 ```
 
 ```shell
@@ -124,7 +125,7 @@ lvim.builtin.treesitter.ensure_installed = {
 
  `<Leader>Lf` 搜索 `plugins.lua`
 
-**plugins**  `/home/david/.local/share/lunarvim/lvim/plugins.lua`
+**plugins**  `$HOME/.local/share/lunarvim/lvim/plugins.lua`
 
 ```lua
  {
@@ -553,8 +554,8 @@ vim.cmd [[setlocal tabstop=4]]
 #### Debugpy
 
 ```sh
-mkdir /home/david/.config/lunarvim-debug-support/virtualenvs
-cd /home/david/.config/lunarvim-debug-support/virtualenvs
+mkdir $HOME/.config/lunarvim-debug-support/virtualenvs
+cd $HOME/.config/lunarvim-debug-support/virtualenvs
 python -m venv debugpy
 debugpy/bin/python -m pip install debugpy
 ```
@@ -565,7 +566,7 @@ debugpy/bin/python -m pip install debugpy
 :TSInstall python
 ```
 
-**plugins**  `/home/david/.local/share/lunarvim/lvim/plugins.lua`
+**plugins**  `$HOME/.local/share/lunarvim/lvim/plugins.lua`
 
 ```lua
   {
@@ -877,59 +878,40 @@ return config
 
 
 
+### Copy ftplugin && plugin
 
-
-### Copy to ftplugin
-
-**settings** `/home/david/.local/share/lunarvim/lvim/lua/lvim/lsp/templates.lua`
+**settings** `$HOME/.local/share/lunarvim/lvim/lua/lvim/lsp/templates.lua`
 
 ```lua
 ---Generates ftplugin files based on a list of server_names
 ---The files are generated to a runtimepath: "$LUNARVIM_RUNTIME_DIR/site/after/ftplugin/template.lua"
 ---@param servers_names table list of servers to be enabled. Will add all by default
 function M.generate_templates(servers_names)
-  servers_names = servers_names or {}
-
-  Log:debug "Templates installation in progress"
-
-  M.remove_template_files()
-
-  if vim.tbl_isempty(servers_names) then
-    local available_servers = require("nvim-lsp-installer.servers").get_available_servers()
-
-    for _, server in pairs(available_servers) do
-      table.insert(servers_names, server.name)
-      table.sort(servers_names)
-    end
-  end
-
-  -- create the directory if it didn't exist
-  if not utils.is_directory(lvim.lsp.templates_dir) then
-    vim.fn.mkdir(ftplugin_dir, "p")
-  end
-
-  for _, server in ipairs(servers_names) do
-    M.generate_ftplugin(server, ftplugin_dir)
-  end
+  ...
 
   -- Call os.execute() to execute user-defined script and copy user-defined language template to ftplugin_dir
-  local script = "/utils/installer/copy-ftplugin.py"
-  local command = "python "..lvim.lvim_home.. script
-  os.execute(command)
+  local cp_ft_script = "/utils/installer/copy-ftplugin.py"
+  local cp_ft_cmd = "python "..lvim.lvim_home.. cp_ft_script
+  os.execute(cp_ft_cmd)
+
+  -- Call os.execute() to execute user-defined script and copy specify plugin config to relevant plugin directory
+  local cp_plugin_script = "/utils/installer/copy-plugin.py"
+  local cp_plugin_cmd = "python "..lvim.lvim_home.. cp_plugin_script
+  os.execute(cp_plugin_cmd)
 
   Log:debug "Templates installation is complete"
 end
 ```
 
-> LunarVim 每次更新核心配置后（或执行 `<leader>Lr` / `<leader>Lu` 手动更新），都会重置 ftplugin，将之前设置好的语言重置最初设置。
->
-> 解决办法是，在生成 ftplugin 方法内加入 **`os.execute(command)`** ，执行COPY脚本，重置后拷贝之前设置好的语言模板到重新创建的 ftplugin 目录下。
+*LunarVim 每次更新核心配置后（或执行 `<leader>Lr` / `<leader>Lu` 手动更新），都会重置 ftplugin，将之前设置好的语言重置最初设置。*
+
+*解决办法是，在生成 ftplugin 方法内加入 **`os.execute(command)`** ，执行COPY脚本，重置后拷贝之前设置好的语言模板到重新创建的 ftplugin 目录下。*
 
 
 
 ### Nvim Ranger
 
-**plugins**  `/home/david/.local/share/lunarvim/lvim/plugins.lua`
+**plugins**  `$HOME/.local/share/lunarvim/lvim/plugins.lua`
 
 ```lua
   -- Ranger
@@ -938,7 +920,7 @@ end
   },
 ```
 
-**which-key** `/home/david/.local/share/lunarvim/lvim/lua/lvim/core/which-key.lua`
+**which-key** `$HOME/.local/share/lunarvim/lvim/lua/lvim/core/which-key.lua`
 
 ```lua
       R = {
@@ -949,7 +931,7 @@ end
 
 ### Symbols Outline
 
-**plugins**  `/home/david/.local/share/lunarvim/lvim/plugins.lua`
+**plugins**  `$HOME/.local/share/lunarvim/lvim/plugins.lua`
 
 ```lua
   {
@@ -961,7 +943,7 @@ end
   },
 ```
 
-**bultins** `/home/david/.local/share/lunarvim/lvim/lua/lvim/core/builtins/init.lua`
+**bultins** `$HOME/.local/share/lunarvim/lvim/lua/lvim/core/builtins/init.lua`
 
 ```lua
 local builtins = {
@@ -970,7 +952,7 @@ local builtins = {
 }
 ```
 
-**settings** `/home/david/.local/share/lunarvim/lvim/lua/lvim/core/symbols-outline.lua`
+**settings** `$HOME/.local/share/lunarvim/lvim/lua/lvim/core/symbols-outline.lua`
 
 ```lua
 local M = {}
@@ -1016,7 +998,7 @@ end
 return M
 ```
 
-**which-key** `/home/david/.local/share/lunarvim/lvim/lua/lvim/core/which-key.lua`
+**which-key** `$HOME/.local/share/lunarvim/lvim/lua/lvim/core/which-key.lua`
 
 ```lua
  o = { "<cmd>SymbolsOutline<cr>", "Outline" },
@@ -1063,7 +1045,7 @@ patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json"
 import os
 import subprocess
 HOME = os.path.expanduser('~')
-LUNARVIM_DIR = os.path.join("/home/david",".local/share/lunarvim")
+LUNARVIM_DIR = os.path.join("$HOME",".local/share/lunarvim")
 FTPLUGIN_DIR = os.path.join(LUNARVIM_DIR, "site/after/ftplugin")
 
 def get_all_ft(dir):
@@ -1088,11 +1070,53 @@ if __name__ == "__main__":
     main()
 ```
 
+#### copy-plugin.py
+
+`$HOME/.local/share/lunarvim/lvim/utils/installer/copy-plugin.py`
+
+```python
+import os
+import subprocess
+from pathlib import Path
+
+HOME = os.path.expanduser('~')
+LUNARVIM_DIR = os.path.join("$HOME",".local/share/lunarvim")
+PACKER_DIR = os.path.join(LUNARVIM_DIR, "site/pack/packer/start")
+EXAMPLE_DIR = os.path.join(LUNARVIM_DIR,"lvim/utils/installer/plugin-example")
+
+def main():
+    example_dict = { } 
+
+    for dirpath, _, filenames in os.walk(EXAMPLE_DIR):
+        for filename in filenames:
+            # $HOME/.local/share/lunarvim/lvim/utils/installer/plugin-example/cmake/config.lua
+            absolute_path_example_config = os.path.join(dirpath, str.replace(filename, ".example",""))
+            # cmake/config.lua
+            pattern = os.path.join(Path(absolute_path_example_config).parent.name, Path(absolute_path_example_config).name)
+           
+            # key:cmake/config.lua; 
+            # value:$HOME/.local/share/lunarvim/lvim/utils/installer/plugin-example/cmake/config.example.lua
+            example_dict.__setitem__(pattern, os.path.join(dirpath, filename))
+
+    for dirpath, _, filenames in os.walk(PACKER_DIR):
+        for filename in filenames:
+            absolute_path_config = os.path.join(dirpath, filename)
+            pattern = os.path.join(Path(absolute_path_config).parent.name, Path(absolute_path_config).name)            
+            if example_dict.get(pattern) != None:
+                absolute_path_example_config = Path(example_dict.get(pattern,""))
+                subprocess.run([ "cp", absolute_path_config, absolute_path_config + ".back" ])
+                subprocess.run([ "cp", absolute_path_example_config, absolute_path_config ])
+
+
+if __name__ == "__main__":
+   main()
+```
+
 
 
 #### Install debug env  script
 
-`/home/david/.local/share/lunarvim/lvim/utils/installer/install-lunarvim-debug-support.sh`
+`$HOME/.local/share/lunarvim/lvim/utils/installer/install-lunarvim-debug-support.sh`
 
 ```bash
 #!/usr/bin/env bash
@@ -1206,7 +1230,7 @@ main
 
 #### install.sh
 
-`/home/david/.local/share/lunarvim/lvim/utils/installer/install.sh`
+`$HOME/.local/share/lunarvim/lvim/utils/installer/install.sh`
 
 ```sh
 #!/usr/bin/env bash
@@ -1257,14 +1281,14 @@ https://www.lunarvim.org/configuration/
 进入 packer.nvim 目录，`git log` 查看更新日志，获取 commit num，替换到 plugins 下对应的 commit num
 
 ```sh
-cd /home/david/.local/share/lunarvim/site/pack/packer/start/packer.nvim
+cd $HOME/.local/share/lunarvim/site/pack/packer/start/packer.nvim
 ```
 
 ```sh
 git log 
 ```
 
-**plugins**  `/home/david/.local/share/lunarvim/lvim/plugins.lua`
+**plugins**  `$HOME/.local/share/lunarvim/lvim/plugins.lua`
 
 ```lua
   packer = "7182f0ddbca2dd6f6723633a84d47f4d26518191",
@@ -1303,15 +1327,15 @@ packer.nvim: Error running config for symbols-outline.nvim: [string "..."]:0: mo
 ^Ino file '/usr/local/share/lua/5.1/lvim/core/symbols-outline/init.lua'
 ^Ino file '/usr/share/lua/5.1/lvim/core/symbols-outline.lua'
 ^Ino file '/usr/share/lua/5.1/lvim/core/symbols-outline/init.lua'
-^Ino file '/home/david/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/lvim/core/symbols-outline.lua'
-^Ino file '/home/david/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/lvim/core/symbols-outline/init.lua'
-^Ino file '/home/david/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/lvim/core/symbols-outline.lua'
-^Ino file '/home/david/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/lvim/core/symbols-outline/init.lua'
+^Ino file '$HOME/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/lvim/core/symbols-outline.lua'
+^Ino file '$HOME/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/lvim/core/symbols-outline/init.lua'
+^Ino file '$HOME/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/lvim/core/symbols-outline.lua'
+^Ino file '$HOME/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/lvim/core/symbols-outline/init.lua'
 ^Ino file './lvim/core/symbols-outline.so'
 ^Ino file '/usr/local/lib/lua/5.1/lvim/core/symbols-outline.so'
 ^Ino file '/usr/lib/lua/5.1/lvim/core/symbols-outline.so'
 ^Ino file '/usr/local/lib/lua/5.1/loadall.so'
-^Ino file '/home/david/.cache/nvim/packer_hererocks/2.0.5/lib/lua/5.1/lvim/core/symbols-outline.so'
+^Ino file '$HOME/.cache/nvim/packer_hererocks/2.0.5/lib/lua/5.1/lvim/core/symbols-outline.so'
 ^Ino file './lvim.so'
 ^Ino file '/usr/local/lib/lua/5.1/lvim.so'
 ^Ino file '/usr/lib/lua/5.1/lvim.so'
@@ -1319,7 +1343,3 @@ packer.nvim: Error running config for symbols-outline.nvim: [string "..."]:0: mo
 ```
 
 注释掉插件即可
-
-### Official Doument
-You can find all the documentation for LunarVim at [lunarvim.org](https://www.lunarvim.org)
-

@@ -62,7 +62,16 @@ M.config = function()
     -- see https://neovim.io/doc/user/map.html#:map-cmd
     vmappings = {
       ["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment" },
-    },
+       i = {
+        name = "Interpretation",
+        t = { ":'<,'>Translate<cr>", "Translate" },
+        w = { ":'<,'>TranslateW<cr>", "Window" },
+        r = { ":'<,'>TranslateR<cr>", "Rplace" },
+        x = { ":TranslateX<cr>", "Clipboard" },
+        h = { ":TranslateH<cr>", "History" },
+        l = { ":TranslateL<cr>", "Log" },
+      },
+   },
     mappings = {
       ["w"] = { "<cmd>w!<CR>", "Save" },
       ["q"] = { "<cmd>q!<CR>", "Quit" },
@@ -238,9 +247,24 @@ M.config = function()
         },
       },
       o = { "<cmd>SymbolsOutline<cr>", "Outline" },
-      T = {
-        name = "Treesitter",
-        i = { ":TSConfigInfo<cr>", "Info" },
+      -- T = {
+      --   name = "Treesitter",
+      --   i = { ":TSConfigInfo<cr>", "Info" },
+      -- },
+      i = {
+        name = "Interpretation",
+        -- Translate the text from the source language
+        t = { ":Translate<cr>", "Translate" },
+        -- Like :Translate..., but display the translation in a window
+        w = { ":TranslateW<cr>", "Window" },
+        -- Like :Translate..., but replace the current text with the translation
+        r = { ":TranslateR<cr>", "Rplace" },
+        -- Translate the text in the clipboard
+        x = { ":TranslateX<cr>", "Clipboard" },
+        -- Export the translation history
+        h = { ":TranslateH<cr>", "History" },
+        -- Display log message
+        l = { ":TranslateL<cr>", "Log" },
       },
       r = { ":RnvimrToggle<cr>", "Ranger" },
       k = {

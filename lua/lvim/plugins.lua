@@ -304,4 +304,7 @@ return {
   {
       "Shatur/neovim-cmake"
   },
+  {
+    "voldikss/vim-translator",
+  }
 }

@@ -34,7 +34,7 @@ lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 -- Carry current line to the new line in normal mode
-lvim.keys.normal_mode["<CR>"] = "i<CR><Esc>"
+lvim.keys.normal_mode["<CR>"] = "0i<CR><Esc>"
 
 -- Cursor movement in insert mode
 lvim.keys.insert_mode["<C-j>"] = "<Down>"

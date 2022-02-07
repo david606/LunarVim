@@ -41,6 +41,12 @@ lvim.keys.insert_mode["<C-j>"] = "<Down>"
 lvim.keys.insert_mode["<C-k>"] = "<Up>"
 lvim.keys.insert_mode["<C-h>"] = "<Left>"
 lvim.keys.insert_mode["<C-l>"] = "<Right>"
+
+lvim.keys.insert_mode["<C-a>"] = "<Esc>^i"
+lvim.keys.insert_mode["<C-e>"] = "<Esc>$a"
+lvim.keys.insert_mode["<C-b>"] = "<Esc>dhi"
+lvim.keys.insert_mode["<C-d>"] = "<Esc>dli"
+
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
 -- edit a default keymapping

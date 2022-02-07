@@ -7,7 +7,7 @@ local config = {
     parameters_file = 'neovim.json',
     build_dir = tostring(Path:new('{cwd}', 'build')),
     samples_path = tostring(script_path:parent():parent():parent() / 'samples'),
-    default_projects_path = tostring(Path:new(vim.loop.os_homedir(), 'Workspace/projects/ClionProjects')),
+    default_projects_path = tostring(Path:new(vim.loop.os_homedir(), 'workspace/projects/ClionProjects')),
     configure_args = { '-D', 'CMAKE_EXPORT_COMPILE_COMMANDS=1' },
     build_args = {},
     quickfix_height = 10,

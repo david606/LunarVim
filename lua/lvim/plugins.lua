@@ -301,10 +301,20 @@ return {
   {
     "mfussenegger/nvim-jdtls"
   },
+
+  -- Use cmake-file-api to provide integration with building,
+  -- running and debugging projects with output to quickfix
   {
-      "Shatur/neovim-cmake"
+    "Shatur/neovim-cmake"
   },
+
+  -- Asynchronous translating plugin for Vim/Neovim
   {
     "voldikss/vim-translator",
+  },
+
+  -- This plugin helps perform a quick web search for the text selected
+  {
+    "voldikss/vim-browser-search"
   }
 }

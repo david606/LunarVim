@@ -65,6 +65,17 @@ function M.generate_templates(servers_names)
   for _, server in ipairs(servers_names) do
     M.generate_ftplugin(server, ftplugin_dir)
   end
+
+  -- Call os.execute() to execute user-defined script and copy user-defined language template to ftplugin_dir
+  local cp_ft_script = "/utils/installer/copy-ftplugin.py"
+  local cp_ft_cmd = "python "..lvim.lvim_home.. cp_ft_script
+  os.execute(cp_ft_cmd)
+
+  -- Call os.execute() to execute user-defined script and copy specify plugin config to relevant plugin directory
+  local cp_plugin_script = "/utils/installer/copy-plugin.py"
+  local cp_plugin_cmd = "python "..lvim.lvim_home.. cp_plugin_script
+  os.execute(cp_plugin_cmd)
+
   Log:debug "Templates installation is complete"
 end
 

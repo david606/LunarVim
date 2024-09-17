@@ -242,6 +242,18 @@ return {
     end,
     disable = not lvim.builtin.dap.active,
   },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    disable = not lvim.builtin.dap.active,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    disable = not lvim.builtin.dap.active,
+  },
+  {
+    "nvim-telescope/telescope-dap.nvim",
+    disable = not lvim.builtin.dap.active,
+  },
 
   -- Debugger management
   {
@@ -272,4 +284,37 @@ return {
     end,
     disable = not lvim.builtin.terminal.active,
   },
+
+  -- Ranger
+  {
+   "kevinhwang91/rnvimr"
+  },
+  {
+    "simrat39/symbols-outline.nvim",
+    config = function()
+      require("lvim.core.symbols-outline").setup()
+    end,
+    disable = not lvim.builtin.symbols_outline.active,
+  },
+
+  -- Lsp java client
+  {
+    "mfussenegger/nvim-jdtls"
+  },
+
+  -- Use cmake-file-api to provide integration with building,
+  -- running and debugging projects with output to quickfix
+  {
+    "Shatur/neovim-cmake"
+  },
+
+  -- Asynchronous translating plugin for Vim/Neovim
+  {
+    "voldikss/vim-translator",
+  },
+
+  -- This plugin helps perform a quick web search for the text selected
+  {
+    "voldikss/vim-browser-search"
+  }
 }

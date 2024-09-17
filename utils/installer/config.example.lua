@@ -13,10 +13,40 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "onedarker"
 
+local home = vim.loop.os_homedir()
+
+-- Test environment directory, where the test environment for each language is located
+lvim.debug_environments_home =home.."/.config/lunarvim-debug-support"
+
+-- Lunarvim's home directory, including subdirectories such as lvim and site
+lvim.lunarvim_home = home .. "/.local/share/lunarvim"
+
+-- Lunarvim's core directory, some of the key core programs are in this directory
+lvim.lvim_home = lvim.lunarvim_home .. "/lvim"
+
+-- Lunarvim's extension directory, some referenced plugins, and ftpluin are in this directory
+lvim.site_home = lvim.lunarvim_home .. "/site"
+
+
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+
+-- Carry current line to the new line in normal mode
+lvim.keys.normal_mode["<CR>"] = "0i<CR><Esc>"
+
+-- Cursor movement in insert mode
+lvim.keys.insert_mode["<C-j>"] = "<Down>"
+lvim.keys.insert_mode["<C-k>"] = "<Up>"
+lvim.keys.insert_mode["<C-h>"] = "<Left>"
+lvim.keys.insert_mode["<C-l>"] = "<Right>"
+
+lvim.keys.insert_mode["<C-a>"] = "<Esc>^i"
+lvim.keys.insert_mode["<C-e>"] = "<Esc>$a"
+lvim.keys.insert_mode["<C-b>"] = "<Esc>dhi"
+lvim.keys.insert_mode["<C-d>"] = "<Esc>dli"
+
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
 -- edit a default keymapping
@@ -73,6 +103,8 @@ lvim.builtin.treesitter.ensure_installed = {
   "rust",
   "java",
   "yaml",
+  "go",
+  "cpp",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -86,6 +118,9 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- ---@usage Select which servers should be configured manually. Requires `:LvimCacheRest` to take effect.
 -- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
 -- vim.list_extend(lvim.lsp.override, { "pyright" })
+
+-- Turn off the override for pyright, otherwise it won't load properly
+-- vim.list_extend(lvim.lsp.override, {  "jdtls", "gopls", "clangd", "cmake"})
 
 -- ---@usage setup a server -- see: https://www.lunarvim.org/languages/#overriding-the-default-configuration
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options

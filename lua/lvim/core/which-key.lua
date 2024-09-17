@@ -62,7 +62,17 @@ M.config = function()
     -- see https://neovim.io/doc/user/map.html#:map-cmd
     vmappings = {
       ["/"] = { "<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment" },
-    },
+       i = {
+        name = "Interpretation",
+        t = { ":'<,'>Translate<cr>", "Translate" },
+        w = { ":'<,'>TranslateW<cr>", "Window" },
+        r = { ":'<,'>TranslateR<cr>", "Rplace" },
+        x = { ":TranslateX<cr>", "Clipboard" },
+        h = { ":TranslateH<cr>", "History" },
+        l = { ":TranslateL<cr>", "Log" },
+      },
+      e = { ":'<,'>BrowserSearch<cr>", "Search Engine" },
+   },
     mappings = {
       ["w"] = { "<cmd>w!<CR>", "Save" },
       ["q"] = { "<cmd>q!<CR>", "Quit" },
@@ -76,23 +86,11 @@ M.config = function()
         f = { "<cmd>Telescope buffers<cr>", "Find" },
         b = { "<cmd>b#<cr>", "Previous" },
         w = { "<cmd>BufferWipeout<cr>", "Wipeout" },
-        e = {
-          "<cmd>BufferCloseAllButCurrent<cr>",
-          "Close all but current",
-        },
+        e = { "<cmd>BufferCloseAllButCurrent<cr>", "Close all but current", },
         h = { "<cmd>BufferCloseBuffersLeft<cr>", "Close all to the left" },
-        l = {
-          "<cmd>BufferCloseBuffersRight<cr>",
-          "Close all to the right",
-        },
-        D = {
-          "<cmd>BufferOrderByDirectory<cr>",
-          "Sort by directory",
-        },
-        L = {
-          "<cmd>BufferOrderByLanguage<cr>",
-          "Sort by language",
-        },
+        l = { "<cmd>BufferCloseBuffersRight<cr>", "Close all to the right", },
+        D = { "<cmd>BufferOrderByDirectory<cr>", "Sort by directory", },
+        L = { "<cmd>BufferOrderByLanguage<cr>", "Sort by language", },
       },
       p = {
         name = "Packer",
@@ -120,21 +118,12 @@ M.config = function()
         r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
         R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
         s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-        u = {
-          "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-          "Undo Stage Hunk",
-        },
+        u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk", },
         o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
         b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-        C = {
-          "<cmd>Telescope git_bcommits<cr>",
-          "Checkout commit(for current file)",
-        },
-        d = {
-          "<cmd>Gitsigns diffthis HEAD<cr>",
-          "Git Diff",
-        },
+        C = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)", },
+        d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Git Diff", },
       },
 
       l = {
@@ -145,14 +134,8 @@ M.config = function()
         f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
         i = { "<cmd>LspInfo<cr>", "Info" },
         I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-        j = {
-          "<cmd>lua vim.diagnostic.goto_next()<cr>",
-          "Next Diagnostic",
-        },
-        k = {
-          "<cmd>lua vim.diagnostic.goto_prev()<cr>",
-          "Prev Diagnostic",
-        },
+        j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic", },
+        k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic", },
         l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
         p = {
           name = "Peek",
@@ -163,28 +146,15 @@ M.config = function()
         q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
         r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
         s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-        S = {
-          "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-          "Workspace Symbols",
-        },
+        S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols", },
       },
       L = {
         name = "+LunarVim",
-        c = {
-          "<cmd>edit " .. get_config_dir() .. "/config.lua<cr>",
-          "Edit config.lua",
-        },
-        f = {
-          "<cmd>lua require('lvim.core.telescope.custom-finders').find_lunarvim_files()<cr>",
-          "Find LunarVim files",
-        },
-        g = {
-          "<cmd>lua require('lvim.core.telescope.custom-finders').grep_lunarvim_files()<cr>",
-          "Grep LunarVim files",
-        },
+        c = { "<cmd>edit " .. get_config_dir() .. "/config.lua<cr>", "Edit config.lua", },
+        f = { "<cmd>lua require('lvim.core.telescope.custom-finders').find_lunarvim_files()<cr>", "Find LunarVim files", },
+        g = { "<cmd>lua require('lvim.core.telescope.custom-finders').grep_lunarvim_files()<cr>", "Grep LunarVim files", },
         k = { "<cmd>Telescope keymaps<cr>", "View LunarVim's keymappings" },
-        i = {
-          "<cmd>lua require('lvim.core.info').toggle_popup(vim.bo.filetype)<cr>",
+        i = { "<cmd>lua require('lvim.core.info').toggle_popup(vim.bo.filetype)<cr>",
           "Toggle LunarVim Info",
         },
         I = {
@@ -224,6 +194,7 @@ M.config = function()
         name = "Search",
         b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+        e = { "<cmd>BrowserSearch<cr>", "Search Engine" },
         f = { "<cmd>Telescope find_files<cr>", "Find File" },
         h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
         M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
@@ -237,9 +208,43 @@ M.config = function()
           "Colorscheme with Preview",
         },
       },
-      T = {
-        name = "Treesitter",
-        i = { ":TSConfigInfo<cr>", "Info" },
+      o = { "<cmd>SymbolsOutline<cr>", "Outline" },
+      -- T = {
+      --   name = "Treesitter",
+      --   i = { ":TSConfigInfo<cr>", "Info" },
+      -- },
+      i = {
+        name = "Interpretation",
+        -- Translate the text from the source language
+        t = { ":Translate<cr>", "Translate" },
+        -- Like :Translate..., but display the translation in a window
+        w = { ":TranslateW<cr>", "Window" },
+        -- Like :Translate..., but replace the current text with the translation
+        r = { ":TranslateR<cr>", "Rplace" },
+        -- Translate the text in the clipboard
+        x = { ":TranslateX<cr>", "Clipboard" },
+        -- Export the translation history
+        h = { ":TranslateH<cr>", "History" },
+        -- Display log message
+        l = { ":TranslateL<cr>", "Log" },
+      },
+      r = { ":RnvimrToggle<cr>", "Ranger" },
+      k = {
+        name = "CMake",
+        -- Create a new project or open an existing
+        n = { ":CMake create_project<cr>", "New project" },
+        -- Configure project to create build folder and get targets information
+        c = { ":CMake configure<cr>", "Configure project" },
+        -- Select target to execute
+        s = { ":CMake select_target<cr>", "Select target" },
+        -- Compile selected target (via --build). Additional arguments will be passed to CMake
+        b = { ":CMake build<cr>", "Build" },
+        -- Execute clear target. Additional arguments will be passed to CMake.
+        r = { ":CMake clean<cr>", "Remove target" },
+        -- Delete CMakeCache.txt file from the build directory.
+        d = { ":CMake clean<cr>", "Delete CMakeCache.txt" },
+        -- Cancel current running CMake action like build or run.
+        q = { ":CMake cancel<cr>", "Cancel build" },
       },
     },
   }
